@@ -5,6 +5,8 @@ __pycache__/
 
 instance/
 
+visionitt/static/uploads/
+
 .pytest_cache/
 .coverage
 htmlcov/

@@ -8,15 +8,6 @@ CREATE TABLE nitt_user (
   nitt_id VARCHAR(255) UNIQUE NOT NULL
 );
 
-CREATE TABLE vehicle_entry (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  person_entry_id VARCHAR(255) NOT NULL,
-  vehicle_number VARCHAR(255) NOT NULL,
-  vehicle_type VARCHAR(255) NOT NULL,
-  vehicle_number_image VARCHAR(255) NOT NULL,
-  vehicle_image VARCHAR(255) NOT NULL,
-  FOREIGN KEY (person_entry_id) REFERENCES person_entry (id)
-);
 
 CREATE TABLE person_entry (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -30,6 +21,9 @@ CREATE TABLE person_entry (
   is_vehicle BOOLEAN NOT NULL,
   entry_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   exited BOOLEAN NOT NULL,
-  exit_time TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES user (id)
+  vehicle_number VARCHAR(255) NOT NULL,
+  vehicle_type VARCHAR(255) NOT NULL,
+  vehicle_number_image VARCHAR(255) NOT NULL,
+  vehicle_image VARCHAR(255) NOT NULL,
+  exit_time TIMESTAMP
 ); 

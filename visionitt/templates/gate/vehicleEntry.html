@@ -138,8 +138,7 @@
                   Message Center
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                  <div class="dropdown-list-image mr-3">unsp
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -149,7 +148,6 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
                     <div class="status-indicator"></div>
                   </div>
                   <div>
@@ -159,7 +157,6 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
                     <div class="status-indicator bg-warning"></div>
                   </div>
                   <div>
@@ -169,7 +166,6 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div>
@@ -187,7 +183,6 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -251,32 +246,47 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div >
-                    <input type="text" class="form-control form-control-user" id="name" placeholder="Name">
+                    {% block content %}
+                    <form method="post">
+                    <input type="text" class="form-control form-control-user" id="name"  name="name" placeholder="Name" required>
                     <br/>
-                    <input type="text" class="form-control form-control-user" id="purposeOfVisit" placeholder="Purpose of Visit">
+                    <input type="text" class="form-control form-control-user" id="rfid"  name="rfid" placeholder="RFID (If Applicable)">
                     <br/>
-                    <input type="text" class="form-control form-control-user" id="from" placeholder="From">
+                    <input type="text" class="form-control form-control-user" id="purposeOfVisit" name="purposeOfVisit" placeholder="Purpose of Visit" required>
                     <br/>
-                    <input type="text" class="form-control form-control-user" id="to" placeholder="To">
+                    <input type="text" class="form-control form-control-user" id="from" name="from" placeholder="From" required>
                     <br/>
-                    <input type="text" class="form-control form-control-user" id="entryTime" placeholder="Entry Time" disabled>
+                    <input type="text" class="form-control form-control-user" id="to" name="to" placeholder="To" required>
                     <br/>
-                    <input type="text" class="form-control form-control-user" id="vehicleNumber" placeholder="Vehicle Number" disabled>
+                    <input type="text" class="form-control form-control-user" id="entryTime" name="entryTime" placeholder="Entry Time" readOnly>
                     <br/>
+                    <input type="text" class="form-control form-control-user" id="vehicleNumber" name="vehicleNumber" placeholder="Vehicle Number" readOnly>
+                    <br/>
+                    <input type="Number" class="form-control form-control-user" id="isNitt" name="isNitt" placeholder="Vehicle Number" readOnly hidden>
+                    <input type="text" class="form-control form-control-user" id="vehicleImage" name="vehicleImage" placeholder="Vehicle Number" readOnly hidden>
+                    <input type="text" class="form-control form-control-user" id="vehicleNumberImage" name="vehicleNumberImage" placeholder="Vehicle Number" readOnly hidden>
+                    <input type="text" class="form-control form-control-user" id="faceImage" name="faceImage" placeholder="Vehicle Number" readOnly hidden>
+
                     <a href="#" class="btn btn-primary btn-icon-split">
+                    <button onclick="rfidAutoFill();">
                     <span class="icon text-white-50">
                       <i class="fas fa-flag"></i>
                     </span>
                     <span class="text">RF ID (NITT User)</span>
+                    </button>
+
                   </a>
                   <div class="my-2"></div>
                   <a href="#" class="btn btn-success btn-icon-split">
+                    <button onclick="autoFill();">
                     <span class="icon text-white-50">
                       <i class="fas fa-check"></i>
                     </span>
                     <span class="text">New User</span>
+                    </button>
                   </a>
-
+                  </form>
+                    {% endblock %}
                   </div>
                 </div>
               </div>
@@ -364,6 +374,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/auto-fill.js') }}"></script>
 
   <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
