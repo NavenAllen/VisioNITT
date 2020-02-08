@@ -3,9 +3,11 @@ import functools
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+from flask import Response
 
 from datetime import datetime
 from visionitt.db import get_db
+from visionitt.faceRecog.face_crop import face_recog
 
 bp = Blueprint('gate', __name__, url_prefix='/gate')
 
@@ -55,3 +57,8 @@ def index():
         ' FROM person_entry'
     ).fetchall()
     return render_template('base.html', entries=entries)
+
+@bp.route('/video_feed')
+def video_feed():
+    return Response(face_recog(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
