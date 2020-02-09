@@ -2,6 +2,7 @@ import os
 
 from flask import (
     Flask, render_template )
+import cv2
 
 
 def create_app(test_config=None):
@@ -11,6 +12,7 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'visionitt.sqlite'),
     )
+    app.config['UPLOAD_FOLDER'] = "visionitt/static/uploads/"
 
     # ensure the instance folder exists
     try:

@@ -24,8 +24,74 @@
 
 <body id="page-top">
 
+  
+
   <!-- Page Wrapper -->
   <div id="wrapper">
+
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Interface
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/gate/vehicleEntry" aria-expanded="true">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Entry</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Admin
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/gate">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>All Records</span>
+        </a>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <!-- Nav Item - Tables -->
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+
+    </ul>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -211,6 +277,8 @@
         </nav>
         <!-- End of Topbar -->
 
+        
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -229,7 +297,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Entry Details</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -247,7 +315,7 @@
                 <div class="card-body">
                   <div >
                     {% block content %}
-                    <form id = "entry_form" action="#">
+                    <form id = "entry_form">
                     <input type="text" class="form-control form-control-user" id="name"  name="name" placeholder="Name" required>
                     <br/>
                     <input type="text" class="form-control form-control-user" id="rfid"  name="rfid" placeholder="RFID (If Applicable)">
@@ -263,11 +331,9 @@
                     <input type="text" class="form-control form-control-user" id="vehicleNumber" name="vehicleNumber" placeholder="Vehicle Number" readOnly>
                     <br/>
                     <input type="Number" class="form-control form-control-user" id="isNitt" name="isNitt" placeholder="Vehicle Number" readOnly hidden>
-                    <input type="text" class="form-control form-control-user" id="vehicleImage" name="vehicleImage" placeholder="Vehicle Number" readOnly hidden>
                     <input type="text" class="form-control form-control-user" id="vehicleNumberImage" name="vehicleNumberImage" placeholder="Vehicle Number" readOnly hidden>
-                    <input type="text" class="form-control form-control-user" id="faceImage" name="faceImage" placeholder="Vehicle Number" readOnly hidden>
 
-                    <a href="#" class="btn btn-primary btn-icon-split">
+                    <a href="" class="btn btn-primary btn-icon-split">
                     <button id="rfidUpload">
                     <span class="icon text-white-50">
                       <i class="fas fa-flag"></i>
@@ -293,11 +359,11 @@
             </div>
 
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-8 col-lg-7" style="text-align:center">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Vehicle Camera</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -314,15 +380,17 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div class="chart-area">
+                    <video id="video1" width="100%" height="100%" autoplay loop><source src="/static/website/f1out.ogg" type="video/ogg"></source></video>
+                    <canvas id="videoframe" hidden> </canvas>
                     <!--img src="{{ url_for('gate.video_feed') }}"-->
                   </div>
                 </div>
               </div>
-              <div class="col-xl-7 col-lg-7" style="align-content: right">
+              <div class="col-xl-8 col-lg-7" style="display:inline-block;">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Face Camera</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -339,7 +407,8 @@
                 <!-- Card Body -->
                 <div class="card-body">
                   <div>
-                    <!--img src="{{ url_for('gate.video_feed') }}"-->
+                    <img src="{{ url_for('gate.video_feed') }}" id="live_feed">
+                    <canvas id="imageframe" hidden> </canvas>
                   </div>
                 </div>
               </div>
